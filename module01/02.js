@@ -19,5 +19,4 @@ function seekNumberPair(x, y) {
 
     console.log(pairNumbers);
   };
-
-  seekNumberPair(10, 50);
+  

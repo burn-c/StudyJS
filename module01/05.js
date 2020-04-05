@@ -15,5 +15,3 @@ function describe(users) {
         console.log(`${user.name} has the skills: ${user.skills.join(', ')}.`);
     }
 }
-
-describe(users);

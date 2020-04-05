@@ -22,5 +22,3 @@ function experience(age) {
 
 var yearsOfStudy = 8;
 
-experience(yearsOfStudy);
-

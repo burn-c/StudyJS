@@ -6,48 +6,29 @@
     <title>Exercise - Module 01</title>
 </head>
 <body>
-    <script>
-      // 1st exercise
-        var adress = {
-          street: "First avenue",
-          number: 123,
-          neighborhood: "Center",
-          city: "São Paulo",
-          state: "SP"
-        };
+  <header>
+    <h1>Exercises Module 01</h1>
+    <p>Open your console to see the results</p>
+  </header>
+  <h2>EX 01</h2>
+  <script src="./01.js"></script>
+    <button onclick="completeAdress(adress)">RUN</button>
 
-        function completeAdress({street, number, neighborhood, city, state}) {
-          console.log(`The user lives in ${city}/${state}, on the neighborhood ${neighborhood}, in the street ${street}, Nº ${number}. `)
-        }
+  <h2>EX 02</h2>
+<script src="./02.js"></script>
+  <button onclick="seekNumberPair(10,250)">RUN</button>
 
-        completeAdress(adress);
-      
-      // 2nd exercise
-      function seekNumberPair(x, y) {
-    var pairNumbers = [];
+  <h2>EX 03</h2>
+<script src="./03.js"></script>
+  <button onclick="hasSkills(skills)">RUN</button>
 
-    console.log('Initial:');
-    console.log(`x = ${x}`);
-    console.log(`y = ${y}`);
-    console.log(`List = ${pairNumbers}`);
-    
-    while (x <= y) {
-    
-      var n = x % 2;
-      
-      if (n === 0) {
-        pairNumbers.push(x)
-        console.log(`Add ${x} to list!`);
-      };  
-      x++;    
-    };
+  <h2>EX 04</h2>
+<script src="./04.js"></script>
+  <button onclick="experience(yearsOfStudy)">RUN</button>
 
-    console.log(pairNumbers);
-  };
+  <h2>EX 05</h2>
+<script src="./05.js"></script>
+  <button onclick="describe(users)">RUN</button>
 
-  seekNumberPair(10, 50);
-
-  
-    </script>
 </body>
 </html>
