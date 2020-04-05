@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise - Module 01</title>
+</head>
+<body>
+    <script>
+      // 1st exercise
+        var adress = {
+          street: "First avenue",
+          number: 123,
+          neighborhood: "Center",
+          city: "São Paulo",
+          state: "SP"
+        };
+
+        function completeAdress({street, number, neighborhood, city, state}) {
+          console.log(`The user lives in ${city}/${state}, on the neighborhood ${neighborhood}, in the street ${street}, Nº ${number}. `)
+        }
+
+        completeAdress(adress);
+      
+      // 2nd exercise
+      function seekNumberPair(x, y) {
+    var pairNumbers = [];
+
+    console.log('Initial:');
+    console.log(`x = ${x}`);
+    console.log(`y = ${y}`);
+    console.log(`List = ${pairNumbers}`);
+    
+    while (x <= y) {
+    
+      var n = x % 2;
+      
+      if (n === 0) {
+        pairNumbers.push(x)
+        console.log(`Add ${x} to list!`);
+      };  
+      x++;    
+    };
+
+    console.log(pairNumbers);
+  };
+
+  seekNumberPair(10, 50);
+
+  
+    </script>
+</body>
+</html>
