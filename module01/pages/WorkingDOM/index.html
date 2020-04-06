@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Working with the DOM</title>
+</head>
+<body>
+    <div class="app">
+        <input type="text" name="name" id="name"/>
+        <button class="button">Add</button>
+    </div>
+
+    <script>
+        var inputElement = document.querySelector('input[name=name]');
+        var btnElement = document.querySelector('button.button');
+
+        btnElement.onclick = function() {
+            var text = inputElement.value;
+
+            alert(text);
+        }
+    </script>
+    
+</body>
+</html>
