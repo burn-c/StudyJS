@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dealing with elements</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" id="name">
+
+        <button onclick="removeInput()">Remove input</button>
+        
+    </div>
+
+    <script>
+       var linkElement = document.createElement('a');
+       linkElement.setAttribute('href', 'http://github.com');
+       linkElement.setAttribute('title', 'Github website');
+
+       var textElement = document.createTextNode('Acess website');
+       linkElement.appendChild(textElement);
+
+       var containerElement = document.querySelector('#app');
+       containerElement.appendChild(linkElement);
+        
+
+        function removeInput() {
+            var inputElement = document.querySelector('#name');
+            containerElement.removeChild(inputElement);
+        }
+
+
+
+    </script>
+    
+</body>
+</html>
