@@ -2,11 +2,7 @@ var listElement = document.querySelector('#app ul');
 var inputElement = document.querySelector('#app input');
 var buttonElement = document.querySelector('#app button');
 
-var toDoList = [
-  'Go to the market',
-  'Buy a notebook',
-  'Study'
-];
+var toDoList = JSON.parse(localStorage.getItem('list_todo')) || [];
 
 function renderToDoList() {
   listElement.innerHTML = '';
@@ -40,6 +36,8 @@ function addTodo() {
   toDoList.push(todoText);
   inputElement.value = '';
   renderToDoList();
+  saveToStorage();
+
 }
 
 buttonElement.onclick = addTodo;
@@ -47,4 +45,10 @@ buttonElement.onclick = addTodo;
 function deleteTodo(pos) {
   toDoList.splice(pos, 1);
   renderToDoList();
+  saveToStorage();
+}
+
+function saveToStorage() {
+  JSON
+  localStorage.setItem('list_todo', JSON.stringify(toDoList));
 }
