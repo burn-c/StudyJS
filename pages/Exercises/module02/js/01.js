@@ -5,6 +5,13 @@ function addSquare() {
     squareGreen.style.width = '100px';
     squareGreen.style.height = '100px';
     squareGreen.style.backgroundColor = 'red';
+    squareGreen.onmouseover = function() {
+
+      var newColor = getRandomColor()
+
+      squareGreen.style.backgroundColor = newColor;
+
+    }
 
     containerElement.appendChild(squareGreen);
 }
