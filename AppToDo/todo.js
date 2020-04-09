@@ -14,7 +14,20 @@ function renderToDoList() {
     var todoElement = document.createElement('li');
     var todoText = document.createTextNode(todo);
 
+    var linkElement = document.createElement('a');
+
+    linkElement.setAttribute('href', '#');
+
+    var pos = toDoList.indexOf(todo);
+    linkElement.setAttribute('onclick', 'deleteTodo(' + pos + ')');
+
+    var linkText = document.createTextNode('Excluir');
+
+    linkElement.appendChild(linkText);
+
     todoElement.appendChild(todoText);
+    todoElement.appendChild(linkElement);
+
     listElement.appendChild(todoElement);
   }
 }
@@ -30,3 +43,8 @@ function addTodo() {
 }
 
 buttonElement.onclick = addTodo;
+
+function deleteTodo(pos) {
+  toDoList.splice(pos, 1);
+  renderToDoList();
+}
