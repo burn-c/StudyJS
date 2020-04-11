@@ -2,10 +2,12 @@ import React from 'react';
 
 // import { Container } from './styles';
 
-export default function components() {
+export default function Header({ title, children }) {
   return (
     <header>
-      <h1>ReactJS</h1>
+      <h1>{title}</h1>
+
+      {children}
     </header>
   );
 }

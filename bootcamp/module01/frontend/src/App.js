@@ -5,8 +5,16 @@ import Header from './components/Header';
 function App() {
   return (
     <>
-    <Header />
-    <Header />
+    <Header title="Homepage">
+      <ul>
+        <li>Pages</li>
+      </ul>
+    </Header>
+    <Header title="Projects">
+      <ul>
+        <li>Login</li>
+      </ul>
+    </Header>
     </>
   );
 }
