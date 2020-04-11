@@ -1,20 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Header from './components/Header';
 
 function App() {
+  const [projects, setProjects] = useState(['Frontend', 'Backend']);
+
+  function handleAddProject() {
+    const newProject = `Novo projeto ${Date.now()}`;
+    setProjects([...projects, newProject ]);
+
+    console.log(projects);
+  }
+
+
   return (
     <>
-    <Header title="Homepage">
-      <ul>
-        <li>Pages</li>
-      </ul>
-    </Header>
-    <Header title="Projects">
-      <ul>
-        <li>Login</li>
-      </ul>
-    </Header>
+    <Header title="Homepage" />
+    <ul>
+      {projects.map(project => <li key={project}>{project}</li>)}
+    </ul>
+
+    <button type="button" onClick={handleAddProject}>Add project</button>
+
     </>
   );
 }
