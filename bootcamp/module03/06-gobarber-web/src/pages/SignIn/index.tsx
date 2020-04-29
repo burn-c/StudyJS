@@ -51,7 +51,11 @@ const SignIn: React.FC = () => {
 
           formRef.current?.setErrors(errors);
         }
-        addToast();
+        addToast({
+          type: 'info',
+          title: 'Erros acontecem',
+          description: 'Nem tudo na vida é perfeito',
+        });
       }
     },
     [signIn, addToast],
