@@ -36,46 +36,49 @@ const SignUp: React.FC = () => {
   const emailInputRef = useRef<TextInput>(null);
   const passwordInputRef = useRef<TextInput>(null);
 
-  const handleSignUp = useCallback(async (data: SignUpFormData) => {
-    try {
-      formRef.current?.setErrors({});
+  const handleSignUp = useCallback(
+    async (data: SignUpFormData) => {
+      try {
+        formRef.current?.setErrors({});
 
-      const schema = Yup.object().shape({
-        name: Yup.string().required('Name is required!'),
-        email: Yup.string()
-          .required('E-mail is required!')
-          .email('Enter a valid e-mail adress!'),
-        password: Yup.string().min(6, 'No mínimo 6 dígitos!'),
-      });
+        const schema = Yup.object().shape({
+          name: Yup.string().required('Name is required!'),
+          email: Yup.string()
+            .required('E-mail is required!')
+            .email('Enter a valid e-mail adress!'),
+          password: Yup.string().min(6, 'No mínimo 6 dígitos!'),
+        });
 
-      await schema.validate(data, {
-        // Return all errors ate once
-        abortEarly: false,
-      });
+        await schema.validate(data, {
+          // Return all errors ate once
+          abortEarly: false,
+        });
 
-      await api.post('/users', data);
+        await api.post('/users', data);
 
-      Alert.alert(
-        'Completed registration!',
-        'You can now logon on to Gobarber!',
-      );
+        Alert.alert(
+          'Completed registration!',
+          'You can now logon on to Gobarber!',
+        );
 
-      navigation.goBack();
-    } catch (err) {
-      if (err instanceof Yup.ValidationError) {
-        const errors = getValidationErrors(err);
+        navigation.goBack();
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
 
-        formRef.current?.setErrors(errors);
+          formRef.current?.setErrors(errors);
 
-        return;
+          return;
+        }
+
+        Alert.alert(
+          'Registration error',
+          'An error occurred while trying to register, please try again!',
+        );
       }
-
-      Alert.alert(
-        'Registration error',
-        'An error occurred while trying to register, please try again!',
-      );
-    }
-  }, []);
+    },
+    [navigation],
+  );
 
   return (
     <>

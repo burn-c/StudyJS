@@ -28,6 +28,7 @@ import {
 } from './styles';
 
 import logoImg from '../../assets/logo.png';
+import { useAuth } from '../../hooks/auth';
 
 interface SignInFormData {
   email: string;
@@ -38,44 +39,46 @@ const SignIn: React.FC = () => {
   const navigation = useNavigation();
   const formRef = useRef<FormHandles>(null);
   const passwordInputRef = useRef<TextInput>(null);
+  const { signIn } = useAuth();
 
-  const handleSignIn = useCallback(async (data: SignInFormData) => {
-    try {
-      formRef.current?.setErrors({});
+  const handleSignIn = useCallback(
+    async (data: SignInFormData) => {
+      try {
+        formRef.current?.setErrors({});
 
-      const schema = Yup.object().shape({
-        email: Yup.string()
-          .required('E-mail is required!')
-          .email('Enter a valid e-mail adress!'),
-        password: Yup.string().required('Password is required!'),
-      });
+        const schema = Yup.object().shape({
+          email: Yup.string()
+            .required('E-mail is required!')
+            .email('Enter a valid e-mail adress!'),
+          password: Yup.string().required('Password is required!'),
+        });
 
-      await schema.validate(data, {
-        // Return all errors ate once
-        abortEarly: false,
-      });
+        await schema.validate(data, {
+          // Return all errors ate once
+          abortEarly: false,
+        });
 
-      // await signIn({
-      //   email: data.email,
-      //   password: data.password,
-      // });
+        await signIn({
+          email: data.email,
+          password: data.password,
+        });
+      } catch (err) {
+        if (err instanceof Yup.ValidationError) {
+          const errors = getValidationErrors(err);
 
-      // history.push('/dashboard');
-    } catch (err) {
-      if (err instanceof Yup.ValidationError) {
-        const errors = getValidationErrors(err);
+          formRef.current?.setErrors(errors);
 
-        formRef.current?.setErrors(errors);
+          return;
+        }
 
-        return;
+        Alert.alert(
+          'Logon error',
+          'Check your refistration data, please try again!',
+        );
       }
-
-      Alert.alert(
-        'Logon error',
-        'Check your refistration data, please try again!',
-      );
-    }
-  }, []);
+    },
+    [signIn],
+  );
 
   return (
     <>
