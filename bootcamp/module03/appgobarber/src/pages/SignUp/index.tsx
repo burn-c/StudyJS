@@ -21,6 +21,7 @@ import getValidationErrors from '../../utils/getValidationErrors';
 import { Container, Title, BackToSignIn, BackToSignInText } from './styles';
 
 import logoImg from '../../assets/logo.png';
+import api from '../../services/api';
 
 interface SignUpFormData {
   name: string;
@@ -52,12 +53,14 @@ const SignUp: React.FC = () => {
         abortEarly: false,
       });
 
-      // await api.post('/users', data);
+      await api.post('/users', data);
 
       Alert.alert(
         'Completed registration!',
         'You can now logon on to Gobarber!',
       );
+
+      navigation.goBack();
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);
