@@ -3,8 +3,8 @@ import { getCustomRepository } from 'typeorm';
 
 import AppError from '@shared/errors/AppError';
 
-import Appointment from '../infra/typeorm/entities/Appointments';
-import AppointmentsRepository from '../repositories/AppointmentsRepository';
+import AppointmentsRepository from '@modules/appointments/infra/typeorm/repositories/AppointmentsRepository';
+import Appointment from '../infra/typeorm/entities/Appointment';
 
 /**
  * Receiving information
@@ -31,14 +31,11 @@ class CreateAppointmentService {
       throw new AppError('This appointment is already booked');
     }
 
-    // Create instance
-    const appointment = appointmentsRepository.create({
+    // Create and save
+    const appointment = await appointmentsRepository.create({
       provider_id,
       date: appointmentDate,
     });
-
-    // Save on database
-    await appointmentsRepository.save(appointment);
 
     return appointment;
   }
