@@ -1,4 +1,3 @@
-import IHashProvider from '../models/IHashProvider';
 import IStorageProvider from '../models/IStorageProvider';
 
 class FakeStorageProvider implements IStorageProvider {
