@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import 'dotenv/config';
 import colors from 'colors';
 
 import express, { Request, Response, NextFunction } from 'express';
