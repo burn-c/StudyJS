@@ -1,9 +1,13 @@
-// import { container } from 'tsyringe';
+import { container } from 'tsyringe';
 
-// import DiskStorageProvider from './implementations/DiskStorageProvider';
-// import IStorageProvider from '../StorageProvider/models/IStorageProvider';
+import HandlebarsMailTemplateProvider from './implementations/HandlebarsMailTemplateProvider';
+import IMailTemplateProvider from './models/IMailTemplateProvider';
 
-// container.registerSingleton<IStorageProvider>(
-//   'StorageProvider',
-//   DiskStorageProvider,
-// );
+const providers = {
+  handlebars: HandlebarsMailTemplateProvider,
+};
+
+container.registerSingleton<IMailTemplateProvider>(
+  'MailTemplateProvider',
+  providers.handlebars,
+);
