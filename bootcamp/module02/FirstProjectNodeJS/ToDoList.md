@@ -1,4 +1,4 @@
-# Recuperação de senha
+# Recuperação de senha - OK
 
 **RF**
 - O usuário deve poder recuperar sua senha informando o seu e-mail;
@@ -16,7 +16,7 @@
 - O usuário precisa confirmar a nova senha ao resetar sua senha;
 
 
-# Atualização do perfil
+# Atualização do perfil - OK
 
 **RF**
 - O usuário deve poder atualizar seu nome, email e senha;
@@ -30,7 +30,7 @@
 - Para atualizar sua senha, o usuário precisa confirmar a nova senha;
 
 
-# Painel do Prestador
+# Painel do Prestador OK
 
 **RF**
 
