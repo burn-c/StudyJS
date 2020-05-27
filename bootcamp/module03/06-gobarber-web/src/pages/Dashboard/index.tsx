@@ -4,6 +4,7 @@ import 'react-day-picker/lib/style.css';
 import { isToday, isAfter, format, parseISO } from 'date-fns';
 import { FiPower, FiClock } from 'react-icons/fi';
 import { ptBR } from 'date-fns/locale';
+import { Link } from 'react-router-dom';
 import {
   Container,
   Header,
@@ -141,7 +142,9 @@ const Dashboard: React.FC = () => {
 
             <div>
               <span>Bem-vindo,</span>
-              <strong>{user.name}</strong>
+              <Link to="/profile">
+                <strong>{user.name}</strong>
+              </Link>
             </div>
           </Profile>
 
