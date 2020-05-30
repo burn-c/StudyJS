@@ -1,14 +1,14 @@
-const User = require('./User')
+const Question = require('./Question')
 
 
 
 module.exports = {
   Query: {
-    users: () => User.find(),
-    user: (_, { id }) => User.findById(id),
+    questions: () => Question.find(),
+    question: (_, { id }) => Question.findById(id),
   },
 
   Mutation: {
-    createUser: (_, { name, email }) => User.create({ name, email }),
+    createQuestion:  (_, { title, answers }) => Question.create({ title, answers }),
   },
 };

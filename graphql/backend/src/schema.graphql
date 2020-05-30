@@ -1,19 +1,24 @@
-type User {
+type Answer {
+  title: String!
+
+}
+
+type Question {
   id: ID!
-  name: String!
-  email: String!
+  title: String!
+  answers: [String]
 
 }
 
 type Query {
-  users: [User!]!
-  user(id: ID!): User
+  questions: [Question]
+  question(id: ID!): Question
 
 }
 
 type Mutation {
-  createUser(
-    name: String!,
-    email: String!
-    ): User
+  createQuestion(
+    title: String!,
+    answers: [String]
+    ): Question
 }
