@@ -1,12 +1,14 @@
 import express from 'express';
+import path from 'path';
+import routes from './routes';
 
 const app = express();
 
+app.use(express.json());
+app.use(routes);
 
-app.get('/users', (resquest, response) => {
-  console.log('Listagem de usuários!')
+app.use('/uploads', express.static(path.resolve(__dirname, '..', 'uploads')));
 
-  response.send('Hello World!!!!!')
-})
+app.listen(3333);
 
-app.listen(3333)
+console.log('Server On-line on port: 3333');
