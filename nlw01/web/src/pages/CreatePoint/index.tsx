@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, ChangeEvent } from 'react';
 
 import './styles.css';
 
@@ -7,21 +7,77 @@ import { Link } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import { Map, TileLayer, Marker } from 'react-leaflet';
 import api from '../../services/api';
+import localeapi from '../../services/localeapi';
 
-interface IItemProps {
+interface IItem {
   id: number;
   title: string;
   image_url: string;
 }
 
+interface IUFIBGE {
+  sigla: string;
+}
+
+interface IDistritoIBGE {
+  nome: string;
+}
+
 const CreatePoint = () => {
-  const [items, setItems] = useState<IItemProps[]>([]);
+  const [items, setItems] = useState<IItem[]>([]);
+  const [ufs, setUfs] = useState<string[]>([]);
+  const [cities, setCities] = useState<string[]>([]);
+
+  const [selectedUf, setSelectedUf] = useState('0');
+  const [selectedCity, setSelectedCity] = useState('');
+  // const [loading, setLoading] = useState(false);
+
 
   useEffect(() => {
-    api.get<IItemProps[]>('items').then(response => {
+    api.get<IItem[]>('items').then(response => {
       setItems(response.data);
-    })
+    });
   }, []);
+
+  useEffect(() => {
+
+    localeapi.get<IUFIBGE[]>('estados').then(response => {
+      const ufInitials = response.data.map(uf => uf.sigla);
+
+      setUfs(ufInitials);
+
+    });
+  },[])
+
+  useEffect(() => {
+    if(selectedUf === '0') {
+      return;
+    }
+
+    localeapi.get<IDistritoIBGE[]>(`estados/${selectedUf}/distritos`).then(response => {
+      const districts = response.data.map(distrito => distrito.nome);
+
+      setCities(districts);
+
+
+    });
+
+  },[selectedUf])
+
+
+
+  function handleSelectUf(event: ChangeEvent<HTMLSelectElement>) {
+    const uf = event.target.value;
+
+    setSelectedUf(uf);
+  }
+
+  function handleSelectCity(event: ChangeEvent<HTMLSelectElement>) {
+    const city = event.target.value;
+
+    setSelectedCity(city);
+  }
+
 
   return (
     <div id="page-create-point">
@@ -94,15 +150,35 @@ const CreatePoint = () => {
 
             <div className="field">
               <label htmlFor="uf">Estado (UF)</label>
-              <select name="uf" id="uf">
-                <option value="0">Selecione uma UF</option>
+              <select
+                name="uf"
+                id="uf"
+                value={selectedUf}
+                onChange={handleSelectUf}
+              >
+              <option value="0">Selecione uma UF</option>
+
+              {ufs.map(uf => (
+                  <option key={uf} value={uf}>{uf}</option>
+                ))}
+
               </select>
             </div>
 
             <div className="field">
               <label htmlFor="city">Cidade</label>
-              <select name="city" id="city">
+              <select
+                name="city"
+                id="city"
+                value={selectedCity}
+                onChange={handleSelectCity}
+
+              >
                 <option value="0">Selecione uma cidade</option>
+                {cities.map(city => (
+                <option key={city} value={city}>{city}</option>
+
+                ))}
               </select>
             </div>
 
