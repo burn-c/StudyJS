@@ -16,8 +16,6 @@ const Points: React.FC = () => {
     navigation.goBack();
   }
 
-  handleNavigateToDetail
-
   function handleNavigateToDetail() {
     navigation.navigate('Detail');
   }
