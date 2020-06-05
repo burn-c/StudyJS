@@ -6,6 +6,7 @@ import { Feather as Icon } from '@expo/vector-icons';
 
 import { Roboto_400Regular, Roboto_500Medium } from '@expo-google-fonts/roboto';
 import { Ubuntu_700Bold, useFonts } from '@expo-google-fonts/ubuntu';
+import { useNavigation } from '@react-navigation/native';
 
 
 const logo = require('../../assets/logo.png');
@@ -14,6 +15,13 @@ const logoBackground = require('../../assets/home-background.png');
 // import logo from '../../logo.png';
 
 const Home = () => {
+  const navigation = useNavigation();
+
+  function handleNavigateToPoints() {
+    navigation.navigate('Points');
+  }
+
+
   const [fontsLoaded] = useFonts({
     Roboto_400Regular,
     Roboto_500Medium,
@@ -37,7 +45,7 @@ const Home = () => {
    </View>
 
    <View style={styles.footer}>
-     <RectButton style={styles.button} onPress={() => {}}>
+     <RectButton style={styles.button} onPress={handleNavigateToPoints}>
        <View style={styles.buttonIcon}>
         <Icon
           name="arrow-right"
@@ -59,7 +67,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 32,
-    backgroundColor: '#f0f0f5',
   },
 
   main: {
