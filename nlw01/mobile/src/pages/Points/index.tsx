@@ -3,7 +3,7 @@ import Constants from 'expo-constants';
 import { Feather as Icon } from '@expo/vector-icons';
 import { View, StyleSheet, Text, Image, Alert } from 'react-native';
 import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import MapView, { Marker } from 'react-native-maps';
 import { SvgUri } from 'react-native-svg';
 import * as Location from 'expo-location';
@@ -23,6 +23,11 @@ interface IPoint {
   longitude: number;
 }
 
+interface IParams {
+  uf: string;
+  city: string;
+}
+
 
 const Points: React.FC = () => {
   const [items, setItems] =  useState<IItem[]>([]);
@@ -31,8 +36,10 @@ const Points: React.FC = () => {
 
   const [initialPosition, setInitialPosition] =  useState<[number, number]>([0, 0]);
 
-
+  const route = useRoute();
   const navigation = useNavigation();
+
+  const routeParams = route.params as IParams;
 
   useEffect(() => {
     async function loadPosition() {
@@ -66,14 +73,13 @@ const Points: React.FC = () => {
   useEffect(() => {
     api.get('points',{
       params: {
-        city: 'Ribeirão Preto',
-        uf: 'SP',
-        items: [1, 2]
-      }
-    }).then(response => {
-      setPoints(response.data);
-    })
-  },[]);
+        city: routeParams.city,
+        uf: routeParams.uf,
+        items: selectedItems
+        }}).then(response => {
+          setPoints(response.data);
+          })
+  },[selectedItems]);
 
   function handleNavigateBack() {
     navigation.goBack();

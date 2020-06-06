@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { AppLoading } from 'expo';
-import { View, Image, StyleSheet, Text, ImageBackground } from 'react-native';
-import { RectButton } from 'react-native-gesture-handler';
+import { View, Image, StyleSheet, Text, ImageBackground, KeyboardAvoidingView, Platform } from 'react-native';
+import { RectButton, TextInput } from 'react-native-gesture-handler';
 import { Feather as Icon } from '@expo/vector-icons';
 
 import { Roboto_400Regular, Roboto_500Medium } from '@expo-google-fonts/roboto';
@@ -15,10 +15,16 @@ const logoBackground = require('../../assets/home-background.png');
 // import logo from '../../logo.png';
 
 const Home = () => {
+  const [uf, setUf] = useState('');
+  const [city, setCity] = useState('');
+
   const navigation = useNavigation();
 
   function handleNavigateToPoints() {
-    navigation.navigate('Points');
+    navigation.navigate('Points', {
+      uf,
+      city,
+    });
   }
 
 
@@ -32,19 +38,47 @@ const Home = () => {
     return <AppLoading />
   }
   return (
+
+  <KeyboardAvoidingView
+    // behavior={Platform.OS === 'ios' ? 'padding' : 'padding'}
+    style={{ flex: 1 }}
+  >
+
+
   <ImageBackground
     source={logoBackground}
     style={styles.container}
     imageStyle={{ width: 274, height: 368 }}
   >
 
-   <View  style={styles.main}>
+      <View  style={styles.main}>
       <Image source={logo} />
+
         <Text style={styles.title}>Seu marketplace de coleta de resíduos</Text>
         <Text style={styles.description}>Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente.</Text>
-   </View>
 
-   <View style={styles.footer}>
+      </View>
+
+      <View style={styles.footer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Digite a UF"
+          value={uf}
+          maxLength={2}
+          autoCapitalize="characters"
+          autoCorrect={false}
+          onChangeText={setUf}
+        />
+
+
+    <TextInput
+      style={styles.input}
+      placeholder="Digite a cidade"
+      value={city}
+      autoCorrect={false}
+      onChangeText={setCity}
+    />
+
      <RectButton style={styles.button} onPress={handleNavigateToPoints}>
        <View style={styles.buttonIcon}>
         <Icon
@@ -57,9 +91,10 @@ const Home = () => {
           Entrar
         </Text>
      </RectButton>
-
-   </View>
+     </View>
+   {/* </View> */}
   </ImageBackground>
+</KeyboardAvoidingView>
   )
 };
 
