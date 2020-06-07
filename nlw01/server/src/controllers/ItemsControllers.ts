@@ -10,7 +10,7 @@ class ItemsController {
       return {
         id: item.id,
         title: item.title,
-        image_url: `${process.env.URL}uploads/${item.image}`,
+        image_url: `${process.env.URL}src/images/${item.image}`,
       }
     })
 
