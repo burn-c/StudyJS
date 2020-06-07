@@ -140,8 +140,6 @@ const CreatePoint = () => {
 
     const data = new FormData();
 
-
-
       data.append('name', name);
       data.append('email', email);
       data.append('whatsapp', whatsapp);
