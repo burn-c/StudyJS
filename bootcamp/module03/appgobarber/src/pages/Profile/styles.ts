@@ -6,7 +6,6 @@ export const Container = styled.View`
   justify-content: center;
   padding: ${Platform.OS === 'android' ? '60px' : 0} 30px
     ${Platform.OS === 'android' ? 40 : 40}px;
-  position: relative;
 `;
 
 export const Title = styled.Text`
@@ -17,11 +16,11 @@ export const Title = styled.Text`
 `;
 
 export const BackButton = styled.TouchableOpacity`
-  margin-top: 100px;
+  margin-top: 70px;
 `;
 
 export const UserAvatarButton = styled.TouchableOpacity`
-  margin-top: 10px;
+  margin-top: 1px;
 `;
 
 export const UserAvatar = styled.Image`
