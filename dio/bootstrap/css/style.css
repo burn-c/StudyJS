@@ -1,3 +1,6 @@
+body {
+  font: 20px Arial, sans-serif;
+}
 .navbar {
   background-color: rgb(218, 165, 129);
 }
@@ -8,4 +11,5 @@
 
 .margin {
   padding-top: 50px;
+  padding-bottom: 50px;
 }
