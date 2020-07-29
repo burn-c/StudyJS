@@ -1,12 +1,12 @@
 import React from 'react';
 import Menu from '../../components/Menu';
+import Carousel from '../../components/Carousel';
 
 const  Home: React.FC = () => {
   return (
-    <div>
-      <Menu />
-      <h1>Hello World</h1>
-    </div>
+    <>
+      <Carousel />
+    </>
   );
 }
 

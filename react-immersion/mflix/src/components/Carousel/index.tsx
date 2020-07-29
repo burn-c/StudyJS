@@ -1,15 +1,26 @@
 import React from 'react';
 import { VideoCardGroupContainer, VideoCardList, Title, ExtraLink } from './styles';
 import VideoCard from './components/VideoCard';
-
-function VideoCardGroup({
+interface ICarousel {
+  ignoreFirstVideo?: string;
+  category: {
+    titulo: string;
+    cor: string;
+    link_extra: string;
+    videos: string;
+  } | undefined;
+}
+const Carousel: React.FC<ICarousel> = ({
   ignoreFirstVideo,
   category,
-}) {
-  const categoryTitle = category.titulo;
-  const categoryColor = category.cor;
-  const categoryExtraLink = category.link_extra;
-  const videos = category.videos;
+}) => {
+
+    const categoryTitle = category.titulo;
+    const categoryColor = category.cor;
+    const categoryExtraLink = category.link_extra;
+    const videos = category.videos;
+
+
   return (
     <VideoCardGroupContainer>
       {categoryTitle && (
@@ -17,9 +28,9 @@ function VideoCardGroup({
           <Title style={{ backgroundColor: categoryColor || 'red' }}>
             {categoryTitle}
           </Title>
-          {categoryExtraLink && 
+          {categoryExtraLink &&
             <ExtraLink href={categoryExtraLink.url} target="_blank">
-              {categoryExtraLink.text}  
+              {categoryExtraLink.text}
             </ExtraLink>
           }
         </>
@@ -45,4 +56,4 @@ function VideoCardGroup({
   );
 }
 
-export default VideoCardGroup;
+export default Carousel;
