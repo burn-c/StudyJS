@@ -2,15 +2,16 @@ import React from 'react';
 import Logo from '../../assets/img/mflix_logo.png';
 import './styles.css';
 import ButtonLink from '../ButtonLink';
+import { Link } from 'react-router-dom';
 
 const Menu: React.FC = () => {
   return (
     <nav className="Menu">
-      <a href="/">
+      <Link to="/">
         <img className="Logo" src={Logo} alt="Logo MFlix"/>
-      </a>
+      </Link>
 
-      <ButtonLink className="ButtonLink" href="/">
+      <ButtonLink className="ButtonLink" to="/add/video">
         New video
       </ButtonLink>
     </nav>

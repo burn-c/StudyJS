@@ -1,7 +1,7 @@
 import React from 'react';
-import Menu from './components/Menu';
+import Menu from '../../components/Menu';
 
-const  App: React.FC = () => {
+const  Home: React.FC = () => {
   return (
     <div>
       <Menu />
@@ -10,4 +10,4 @@ const  App: React.FC = () => {
   );
 }
 
-export default App;
+export default Home;
